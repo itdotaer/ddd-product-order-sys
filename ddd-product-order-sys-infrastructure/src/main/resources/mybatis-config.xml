@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mybatis的配置文件 -->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 开启驼峰映射 ，否则查询结果不能转成resultType-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <!--项目DataObject对应的包名-->
+        <package name="com.itdotaer.gatewayimpl.database.dataobject"/>
+    </typeAliases>
+    <!--myql数据库连接信息-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/itdotaer?useSSL=TRUE&amp;useUnicode=TRUE&amp;characterEncoding=utf8"/>
+                <property name="username" value="canal"/>
+                <property name="password" value="canal"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/ProductInfoMapper.xml"></mapper>
+    </mappers>
+</configuration>

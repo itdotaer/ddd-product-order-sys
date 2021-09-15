@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itdotaer.gatewayimpl.database.ProductInfoMapper">
+    <sql id="ALL_COLUMNS">
+        product_id,
+        product_name,
+        online,
+        active,
+        status,
+        creator,
+        modifier,
+        gmt_create,
+        gmt_modified,
+        is_deleted
+    </sql>
+
+    <sql id="COMMON_SELECT">
+        SELECT
+        <include refid="ALL_COLUMNS"/>
+        FROM product_info
+    </sql>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="product_id" parameterType="ProductInfoDO">
+        INSERT INTO product_info(
+        <include refid="ALL_COLUMNS"/>
+        ) VALUES (
+        null,
+        #{productName},
+        #{online},
+        #{active},
+        #{status},
+        #{creator},
+        #{modifier},
+        now(),
+        now(),
+        'n'
+        )
+    </insert>
+
+    <update id="update" parameterType="ProductInfoDO">
+        UPDATE product_info SET product_name = #{productName}, online = #{online}, active = #{active},
+        status = #{status}, creator = #{creator}, modifier = #{modifier}, gmt_modified = now()
+        WHERE product_id = #{productId}
+    </update>
+
+    <delete id="delete" parameterType="map">
+        UPDATE product_info SET is_deleted = 'y', modifier = #{modifier} WHERE product_id = #{productId} and IS_DELETED = 'n'
+    </delete>
+
+    <select id="getById" resultType="ProductInfoDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE product_id = #{productId} and IS_DELETED = 'n'
+    </select>
+</mapper>
