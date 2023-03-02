@@ -4,6 +4,8 @@ import com.itdotaer.gatewayimpl.database.dataobject.ProductInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * ProductInfoMapper
  *
@@ -20,5 +22,7 @@ public interface ProductInfoMapper {
     int delete(@Param("modifier") String modifier, @Param("productId") Long productId);
 
     ProductInfoDO getById(@Param("productId") Long productId);
+
+    List<ProductInfoDO> query(@Param("offset") Integer offset, @Param("size") Integer size);
 
 }

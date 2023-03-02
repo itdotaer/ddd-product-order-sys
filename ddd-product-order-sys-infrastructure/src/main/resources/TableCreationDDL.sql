@@ -1,4 +1,4 @@
-use itdotaer;
+use product_db;
 
 CREATE TABLE `product_info` (
   `product_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',

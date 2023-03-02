@@ -18,9 +18,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/itdotaer?useSSL=TRUE&amp;useUnicode=TRUE&amp;characterEncoding=utf8"/>
-                <property name="username" value="canal"/>
-                <property name="password" value="canal"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/product_db?useSSL=TRUE&amp;useUnicode=TRUE&amp;characterEncoding=utf8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
     </environments>

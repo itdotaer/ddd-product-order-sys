@@ -53,4 +53,9 @@
         <include refid="COMMON_SELECT"/>
         WHERE product_id = #{productId} and IS_DELETED = 'n'
     </select>
+
+    <select id="query" resultType="ProductInfoDO" parameterType="map">
+        <include refid="COMMON_SELECT"/>
+        WHERE IS_DELETED = 'n' LIMIT #{offset}, #{size}
+    </select>
 </mapper>

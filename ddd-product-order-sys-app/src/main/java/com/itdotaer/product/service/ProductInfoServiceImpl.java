@@ -2,8 +2,10 @@ package com.itdotaer.product.service;
 
 import com.alibaba.cola.dto.Response;
 import com.itdotaer.api.ProductInfoServiceI;
+import com.itdotaer.dto.ProductDetailQueryCmd;
 import com.itdotaer.dto.ProductQueryCmd;
 import com.itdotaer.dto.ProductSaveCmd;
+import com.itdotaer.product.command.ProductDetailQueryCmdExe;
 import com.itdotaer.product.command.ProductQueryCmdExe;
 import com.itdotaer.product.command.ProductSaveCmdExe;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class ProductInfoServiceImpl implements ProductInfoServiceI {
     private ProductSaveCmdExe productSaveCmdExe;
     @Resource
     private ProductQueryCmdExe productQueryCmdExe;
+    @Resource
+    private ProductDetailQueryCmdExe productDetailQueryCmdExe;
 
     @Override
     public Response saveProductInfo(ProductSaveCmd productSaveCmd) {
@@ -32,5 +36,10 @@ public class ProductInfoServiceImpl implements ProductInfoServiceI {
     @Override
     public Response queryProductInfo(ProductQueryCmd productQueryCmd) {
         return productQueryCmdExe.execute(productQueryCmd);
+    }
+
+    @Override
+    public Response getProductDetail(ProductDetailQueryCmd productDetailQueryCmd) {
+        return productDetailQueryCmdExe.execute(productDetailQueryCmd);
     }
 }

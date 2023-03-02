@@ -1,5 +1,7 @@
 package com.itdotaer.dto;
 
+import com.itdotaer.dto.data.PageSettingDTO;
+import com.itdotaer.dto.data.ProductQueryDTO;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -14,7 +16,10 @@ import javax.validation.constraints.NotNull;
 public class ProductQueryCmd extends CommonCommand {
 
     @NotNull
-    private Long productId;
+    private ProductQueryDTO query;
+
+    @NotNull
+    private PageSettingDTO page;
 
 
 }

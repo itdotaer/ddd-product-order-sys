@@ -1,6 +1,7 @@
 package com.itdotaer.domain.gateway;
 
 import com.itdotaer.domain.product.ProductInfo;
+import com.itdotaer.domain.product.QueryProductInfo;
 
 /**
  * ProductInfoGateway
@@ -12,6 +13,8 @@ public interface ProductInfoGateway {
 
     boolean save(ProductInfo productInfo);
 
-    ProductInfo query(Long productId);
+    QueryProductInfo query(Integer index, Integer size);
+
+    ProductInfo queryByProductId(Long productId);
 
 }
