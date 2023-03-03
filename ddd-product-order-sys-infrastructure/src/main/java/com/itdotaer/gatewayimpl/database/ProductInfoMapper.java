@@ -21,8 +21,8 @@ public interface ProductInfoMapper {
 
     int delete(@Param("modifier") String modifier, @Param("productId") Long productId);
 
-    ProductInfoDO getById(@Param("productId") Long productId);
+    ProductInfoDO getById(@Param("region") String region, @Param("productId") Long productId);
 
-    List<ProductInfoDO> query(@Param("offset") Integer offset, @Param("size") Integer size);
+    List<ProductInfoDO> query(@Param("region") String region, @Param("offset") Integer offset, @Param("size") Integer size);
 
 }

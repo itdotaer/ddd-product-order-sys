@@ -37,8 +37,8 @@ public class ProductInfoGatewayImpl implements ProductInfoGateway {
     }
 
     @Override
-    public QueryProductInfo query(Integer index, Integer size) {
-        List<ProductInfoDO> productInfos = productInfoMapper.query((index - 1) * size, size);
+    public QueryProductInfo query(String region, Integer index, Integer size) {
+        List<ProductInfoDO> productInfos = productInfoMapper.query(region, (index - 1) * size, size);
 
         if (productInfos.isEmpty()) {
             return null;
@@ -55,8 +55,8 @@ public class ProductInfoGatewayImpl implements ProductInfoGateway {
     }
 
     @Override
-    public ProductInfo queryByProductId(Long productId) {
-        ProductInfoDO productInfoDO = productInfoMapper.getById(productId);
+    public ProductInfo queryByProductId(String region, Long productId) {
+        ProductInfoDO productInfoDO = productInfoMapper.getById(region, productId);
 
         if (Objects.isNull(productInfoDO)) {
             return null;

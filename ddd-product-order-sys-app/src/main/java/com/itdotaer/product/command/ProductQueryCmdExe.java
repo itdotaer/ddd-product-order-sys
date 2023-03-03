@@ -29,7 +29,7 @@ public class ProductQueryCmdExe {
     private ProductInfoGateway productInfoGateway;
 
     public Response execute(ProductQueryCmd cmd) {
-        QueryProductInfo queryProductInfo = productInfoGateway.query(cmd.getPage().getIndex(), cmd.getPage().getSize());
+        QueryProductInfo queryProductInfo = productInfoGateway.query(cmd.getQuery().getRegion(), cmd.getPage().getIndex(), cmd.getPage().getSize());
         if (Objects.isNull(queryProductInfo)) {
             return Response.buildFailure("N001", "product not exist");
         }

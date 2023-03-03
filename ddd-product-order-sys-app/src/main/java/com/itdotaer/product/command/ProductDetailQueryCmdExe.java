@@ -26,7 +26,7 @@ public class ProductDetailQueryCmdExe {
     private ProductInfoGateway productInfoGateway;
 
     public Response execute(ProductDetailQueryCmd cmd) {
-        ProductInfo productInfo = productInfoGateway.queryByProductId(cmd.getProductId());
+        ProductInfo productInfo = productInfoGateway.queryByProductId(cmd.getRegion(), cmd.getProductId());
         if (Objects.isNull(productInfo)) {
             return Response.buildFailure("N001", "product not exist");
         }

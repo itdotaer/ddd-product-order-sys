@@ -13,8 +13,8 @@ public interface ProductInfoGateway {
 
     boolean save(ProductInfo productInfo);
 
-    QueryProductInfo query(Integer index, Integer size);
+    QueryProductInfo query(String region, Integer index, Integer size);
 
-    ProductInfo queryByProductId(Long productId);
+    ProductInfo queryByProductId(String region, Long productId);
 
 }

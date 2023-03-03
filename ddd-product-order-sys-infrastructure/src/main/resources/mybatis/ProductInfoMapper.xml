@@ -39,11 +39,11 @@
 
     <select id="getById" resultType="ProductInfoDO" parameterType="map">
         <include refid="COMMON_SELECT"/>
-        WHERE product_id = #{productId} and is_deleted = 'n'
+        WHERE region = #{region} AND product_id = #{productId} and is_deleted = 'n'
     </select>
 
     <select id="query" resultType="ProductInfoDO" parameterType="map">
         <include refid="COMMON_SELECT"/>
-        WHERE is_deleted = 'n' LIMIT #{offset}, #{size}
+        WHERE region = #{region} AND is_deleted = 'n' LIMIT #{offset}, #{size}
     </select>
 </mapper>

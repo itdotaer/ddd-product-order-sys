@@ -14,6 +14,9 @@ import javax.validation.constraints.NotNull;
 public class ProductDetailQueryCmd extends CommonCommand {
 
     @NotNull
+    private String region;
+
+    @NotNull
     private Long productId;
 
 

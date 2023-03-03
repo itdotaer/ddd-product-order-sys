@@ -1,5 +1,8 @@
 package com.itdotaer.dto.data;
 
-public class ProductQueryDTO {
+import lombok.Data;
 
+@Data
+public class ProductQueryDTO {
+    private String region;
 }
