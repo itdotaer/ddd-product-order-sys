@@ -15,6 +15,8 @@ public class ProductInfo {
 
     private Long productId;
 
+    private String region;
+
     private String productName;
 
     private Boolean online;

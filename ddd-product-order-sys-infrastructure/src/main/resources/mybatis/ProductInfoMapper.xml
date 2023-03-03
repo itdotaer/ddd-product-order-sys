@@ -4,58 +4,46 @@
 
 <mapper namespace="com.itdotaer.gatewayimpl.database.ProductInfoMapper">
     <sql id="ALL_COLUMNS">
-        product_id,
-        product_name,
-        online,
-        active,
-        status,
-        creator,
-        modifier,
-        gmt_create,
-        gmt_modified,
-        is_deleted
+        `product_id`,
+        `region`,
+        `product_name`,
+        `online`,
+        `active`,
+        `status`,
+        `creator`,
+        `modifier`,
+        `gmt_create`,
+        `gmt_modified`,
+        `is_deleted`
     </sql>
 
     <sql id="COMMON_SELECT">
         SELECT
         <include refid="ALL_COLUMNS"/>
-        FROM product_info
+        FROM product_info_tab
     </sql>
 
     <insert id="create" useGeneratedKeys="true" keyProperty="product_id" parameterType="ProductInfoDO">
-        INSERT INTO product_info(
-        <include refid="ALL_COLUMNS"/>
-        ) VALUES (
-        null,
-        #{productName},
-        #{online},
-        #{active},
-        #{status},
-        #{creator},
-        #{modifier},
-        now(),
-        now(),
-        'n'
-        )
+        INSERT INTO product_info_tab(`region`,`product_name`,`online`,`active`,`status`,`creator`,`modifier`,`gmt_create`,`gmt_modified`,`is_deleted`) VALUES (#{region},#{productName},#{online},#{active},#{status},#{creator},#{modifier},now(),now(),'n')
     </insert>
 
     <update id="update" parameterType="ProductInfoDO">
-        UPDATE product_info SET product_name = #{productName}, online = #{online}, active = #{active},
+        UPDATE product_info_tab SET product_name = #{productName}, online = #{online}, active = #{active},
         status = #{status}, creator = #{creator}, modifier = #{modifier}, gmt_modified = now()
-        WHERE product_id = #{productId}
+        WHERE product_id = #{productId} and is_deleted = 'n'
     </update>
 
     <delete id="delete" parameterType="map">
-        UPDATE product_info SET is_deleted = 'y', modifier = #{modifier} WHERE product_id = #{productId} and IS_DELETED = 'n'
+        UPDATE product_info_tab SET is_deleted = 'y', modifier = #{modifier} WHERE product_id = #{productId} and is_deleted = 'n'
     </delete>
 
     <select id="getById" resultType="ProductInfoDO" parameterType="map">
         <include refid="COMMON_SELECT"/>
-        WHERE product_id = #{productId} and IS_DELETED = 'n'
+        WHERE product_id = #{productId} and is_deleted = 'n'
     </select>
 
     <select id="query" resultType="ProductInfoDO" parameterType="map">
         <include refid="COMMON_SELECT"/>
-        WHERE IS_DELETED = 'n' LIMIT #{offset}, #{size}
+        WHERE is_deleted = 'n' LIMIT #{offset}, #{size}
     </select>
 </mapper>

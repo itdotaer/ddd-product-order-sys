@@ -1,4 +1,4 @@
-package com.itdotaer.repository;
+package com.itdotaer.gatewayimpl.database;
 
 
 public class CustomerMapperTest {

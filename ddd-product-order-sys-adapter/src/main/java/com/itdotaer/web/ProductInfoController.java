@@ -9,6 +9,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,7 +26,7 @@ public class ProductInfoController {
     private ProductInfoServiceI productInfoService;
 
     @RequestMapping(method = RequestMethod.POST, path = "/save")
-    public Response saveProduct(@RequestBody ProductSaveCmd productSaveCmd) {
+    public Response saveProduct(@Valid @RequestBody ProductSaveCmd productSaveCmd) {
         return productInfoService.saveProductInfo(productSaveCmd);
     }
 
