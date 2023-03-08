@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.concurrent.CountDownLatch;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,6 +19,8 @@ public class TestApplication {
 
     @Test
     public void insertDataTest() throws InterruptedException {
+        CountDownLatch count = new CountDownLatch(2);
+
         new Thread(new Runnable() {
             private Integer counter = 100000;
             @Override
@@ -35,6 +38,8 @@ public class TestApplication {
                     int affectedRows = productInfoMapper.create(productInfoDO);
                     System.out.println("affected rows: " + affectedRows);
                 }
+
+                count.countDown();
             }
         }).start();
 
@@ -55,9 +60,11 @@ public class TestApplication {
                     int affectedRows = productInfoMapper.create(productInfoDO);
                     System.out.println("affected rows: " + affectedRows);
                 }
+
+                count.countDown();
             }
         }).start();
 
-        Thread.currentThread().join();
+        count.await();
     }
 }
